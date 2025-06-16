@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heart Disease Prediction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            background: white;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input[type="number"],
+        input[type="text"],
+        select {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            margin-top: 25px;
+            padding: 12px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #222;
+        }
+
+        #result h3 {
+            margin-bottom: 10px;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Enter Patient Details</h2>
+        <form action="/predict" method="post">
+            <label>Age:</label>
+            <input type="number" name="Age" required>
+
+            <label>Sex:</label>
+            <select name="Sex">
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+
+            <label>Chest Pain Type:</label>
+            <select name="ChestPainType">
+                <option value="ATA">ATA</option>
+                <option value="NAP">NAP</option>
+                <option value="ASY">ASY</option>
+                <option value="TA">TA</option>
+            </select>
+
+            <label>Resting BP:</label>
+            <input type="number" name="RestingBP" required>
+
+            <label>Cholesterol:</label>
+            <input type="number" name="Cholesterol" required>
+
+            <label>Fasting Blood Sugar:</label>
+            <input type="number" name="FastingBS" required>
+
+            <label>Resting ECG:</label>
+            <select name="RestingECG">
+                <option value="Normal">Normal</option>
+                <option value="ST">ST</option>
+                <option value="LVH">LVH</option>
+            </select>
+
+            <label>Max Heart Rate:</label>
+            <input type="number" name="MaxHR" required>
+
+            <label>Exercise Induced Angina:</label>
+            <select name="ExerciseAngina">
+                <option value="Y">Yes</option>
+                <option value="N">No</option>
+            </select>
+
+            <label>Oldpeak:</label>
+            <input type="text" name="Oldpeak" required>
+
+            <label>ST Slope:</label>
+            <select name="ST_Slope">
+                <option value="Up">Up</option>
+                <option value="Flat">Flat</option>
+                <option value="Down">Down</option>
+            </select>
+
+            <input type="submit" value="Predict">
+        </form>
+
+        <div id="result">
+            {% if result %}
+                <h3>Prediction Result:</h3>
+                <p>{{ result }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
+
